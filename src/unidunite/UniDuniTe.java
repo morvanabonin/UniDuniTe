@@ -5,6 +5,8 @@
  */
 package unidunite;
 
+import controller.UniDuneTeController;
+
 /**
  *
  * @author morvanabonin
@@ -15,10 +17,8 @@ public class UniDuniTe {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Funcionarios func = new Funcionarios("Mauro", "de confiança", new CPF("9999999"));
-        System.out.println(func.getCpf());
-        func.setCpf("124289849");     
-        System.out.println(func.getCpf());
+        UniDuneTeController teste = new UniDuneTeController();
+        teste.executar();
     }
     
 }
