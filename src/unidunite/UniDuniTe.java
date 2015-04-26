@@ -5,17 +5,11 @@
  */
 package unidunite;
 
-import banco.ConnectionFactory;
 import controller.UniDuneTeController;
-import dao.FuncionarioDao;
-import dao.FuncionarioDaoBd;
-import java.sql.Connection;
 import java.sql.SQLException;
-import model.CPF;
-import model.Funcionario;
 
 /**
- *
+ * Classe de execução do sistema (Main)
  * @author morvanabonin
  */
 public class UniDuniTe {
