@@ -7,15 +7,14 @@ package model;
  */
 public enum ECompetencia {
     
-    PHP, Java, JavaScript, MySQL, PostgreSQL, CSS, HTML, Ruby, Python;
-    
-    private String competencia;
+    PHP, 
+    Java, 
+    JavaScript, 
+    MySQL, 
+    PostgreSQL, 
+    CSS, 
+    HTML, 
+    Ruby, 
+    Python;
 
-    public String getCompetencia() {
-        return competencia;
-    }
-
-    public void setCompetencia(String competencia) {
-        this.competencia = competencia;
-    }
 }

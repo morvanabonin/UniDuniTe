@@ -13,6 +13,12 @@ public class Funcionario {
     private String cargo;
     private final CPF cpf;
     
+    /**
+     * Construtor Funcionário
+     * @param nome
+     * @param cargo
+     * @param cpf 
+     */
     public Funcionario(String nome, String cargo, CPF cpf) {
         this.nome = nome;
         this.cargo = cargo;

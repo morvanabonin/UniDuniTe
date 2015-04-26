@@ -18,7 +18,6 @@ public class UniDuneTeController {
         
         funcionarios.add(funcionario);
         
-        
     }
        
 }
