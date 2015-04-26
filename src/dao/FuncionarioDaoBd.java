@@ -29,7 +29,7 @@ public class FuncionarioDaoBd implements FuncionarioDao {
     @Override
     public void inserir(Funcionario funcionario) {
         try {
-            String sql = "insert into funcionario(nome, cargo, cpf) values (?, ?, ?)";
+            String sql = "INSERT INTO funcionario(nome, cargo, cpf) VALUES (?, ?, ?)";
             conectar(sql);
             comando.setString(1, funcionario.getNome());
             comando.setString(2, funcionario.getCargo());
@@ -48,7 +48,16 @@ public class FuncionarioDaoBd implements FuncionarioDao {
      */
     @Override
     public void deletar(Funcionario funcionario) {
-        
+        try {
+            String sql = "DELETE FROM funcionario WHERE id=?";
+            conectar(sql);
+            comando.setInt(1, funcionario.getId());
+            comando.executeUpdate();
+            fechar();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**

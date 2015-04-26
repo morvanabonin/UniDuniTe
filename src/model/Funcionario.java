@@ -9,9 +9,10 @@ import model.CPF;
  */
 public class Funcionario {
     
+    private int id;
     private String nome;
     private String cargo;
-    private final CPF cpf;
+    private final CPF cpf; 
     
     /**
      * Construtor Funcionário
@@ -49,4 +50,11 @@ public class Funcionario {
         this.cpf.setCpf(cpf);
     }
 
+    public int getId() {
+        return id;  
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
