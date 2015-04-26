@@ -1,7 +1,8 @@
 
 package controller;
 
-import java.util.ArrayList;
+import dao.FuncionarioDao;
+import dao.FuncionarioDaoBd;
 import model.CPF;
 import model.Funcionario;
 
@@ -13,10 +14,9 @@ public class UniDuneTeController {
     
     public void executar(){
         
-        Funcionario funcionario = new Funcionario("Mauro", "de confiança", new CPF("9999999"));
-        ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
-        
-        funcionarios.add(funcionario);
+        Funcionario funcionario = new Funcionario("Teste", "Meuteste2", new CPF("2487999999"));
+        FuncionarioDao dao = new FuncionarioDaoBd();
+        dao.inserir(funcionario);
         
     }
        

@@ -25,16 +25,10 @@ public class UniDuniTe {
      * @throws java.sql.SQLException
      */
     public static void main(String[] args) throws SQLException {
+        
         UniDuneTeController teste = new UniDuneTeController();
         teste.executar();
-        
-        Funcionario funcionario = new Funcionario("Teste", "Meuteste2", new CPF("2487999999"));
-        FuncionarioDao dao = new FuncionarioDaoBd();
-        dao.inserir(funcionario);
-        
-        Connection connection = ConnectionFactory.getConnection();
-        System.out.println("Conexão aberta!");
-        connection.close();
+
     }
     
 }
