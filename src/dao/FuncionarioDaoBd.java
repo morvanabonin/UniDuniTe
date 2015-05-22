@@ -76,7 +76,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
             comando.setString(1, funcionario.getNome());
             comando.setString(2, funcionario.getCargo());
 	    comando.setString(3, funcionario.getCpf());
-	    comando.setInt(1, id);
+	    comando.setInt(4, id);
             comando.executeUpdate();
             fechar();
 
