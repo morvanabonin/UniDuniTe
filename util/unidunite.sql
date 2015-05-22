@@ -44,9 +44,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `unidunite`.`funcionario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_projeto` INT NULL,
-  `nome` VARCHAR(100) NOT NULL,
   `cpf` VARCHAR(11) NOT NULL,
-  `cargo` VARCHAR(60) NULL,
+  `nome` VARCHAR(100) NOT NULL,
+  `cargo` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_funcionario_projeto1_idx` (`id_projeto` ASC),
   CONSTRAINT `fk_funcionario_projeto1`

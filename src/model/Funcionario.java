@@ -1,8 +1,6 @@
 
 package model;
 
-import model.CPF;
-
 /**
  * Classe de Funcionário
  * @author morvanabonin
@@ -45,6 +43,7 @@ public class Funcionario {
     public String getCpf() {
         return cpf.getCpf();
     }
+    
     
     public void setCpf(String cpf) {
         this.cpf.setCpf(cpf);

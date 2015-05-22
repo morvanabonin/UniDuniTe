@@ -1,24 +1,42 @@
-
 package model;
 
 /**
- * Classe que trabalha com o enum ECompetencia
+ * Entity Competência
+ *
  * @author morvanabonin
  */
 public class Competencia {
-    
-    private String competencia;
-    
-    public Competencia(String competencia) {
-        this.competencia = competencia;
+
+    private String codigo;
+    private String nome;
+
+    /**
+     * Construtor Competência
+     * @param codigo
+     * @param nome
+     */
+    public Competencia(String codigo, String nome) {
+        this.codigo = codigo;
+        this.nome = nome;
     }
 
-    public String getCompetencia() {
-        return competencia;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCompetencia(String competencia) {
-        this.competencia = competencia;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
+
 
 }

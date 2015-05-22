@@ -4,6 +4,7 @@ package dao;
 import banco.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,11 +17,12 @@ import model.Funcionario;
  * 
  * @author morvanabonin
  */
-public class FuncionarioDaoBd implements FuncionarioDao {
+public class FuncionarioDaoBd implements IFuncionarioDao {
     
     private Connection conexao;
-    PreparedStatement comando;
-    
+    private PreparedStatement comando;
+    private String sql;  
+    private int id;
     
    /**
     * Método de inserção de um funcionário no bd
@@ -28,8 +30,8 @@ public class FuncionarioDaoBd implements FuncionarioDao {
     */
     @Override
     public void inserir(Funcionario funcionario) {
-        try {
-            String sql = "INSERT INTO funcionario(nome, cargo, cpf) VALUES (?, ?, ?)";
+        try {	    
+            sql = "INSERT INTO funcionario(nome, cargo, cpf) VALUES (?, ?, ?)";
             conectar(sql);
             comando.setString(1, funcionario.getNome());
             comando.setString(2, funcionario.getCargo());
@@ -47,14 +49,15 @@ public class FuncionarioDaoBd implements FuncionarioDao {
      * @param funcionario 
      */
     @Override
-    public void deletar(Funcionario funcionario) {
-        try {
-            String sql = "DELETE FROM funcionario WHERE id=?";
-            conectar(sql);
-            comando.setInt(1, funcionario.getId());
-            comando.executeUpdate();
-            fechar();
-
+    public void deletar(Funcionario funcionario) {	
+	id = this.pegaIdFuncionario(funcionario);
+	try {
+            sql = "DELETE FROM funcionario WHERE id=?";
+	    conectar(sql);
+	    comando.setInt(1, id);
+	    comando.executeUpdate();
+	    fechar();
+	    
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,7 +69,20 @@ public class FuncionarioDaoBd implements FuncionarioDao {
      */
     @Override
     public void atualizar(Funcionario funcionario) {
-        
+	id = this.pegaIdFuncionario(funcionario);
+        try {
+	    sql = "UPDATE funcionario SET nome=?, cargo=?, cpf=? WHERE id=?";
+            conectar(sql);
+            comando.setString(1, funcionario.getNome());
+            comando.setString(2, funcionario.getCargo());
+	    comando.setString(3, funcionario.getCpf());
+	    comando.setInt(1, id);
+            comando.executeUpdate();
+            fechar();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -106,5 +122,29 @@ public class FuncionarioDaoBd implements FuncionarioDao {
     public void fechar() throws SQLException {
         comando.close();
         conexao.close();
+    }
+    
+    /**
+     * Método para pegar o id do funcionário por cpf
+     * 
+     * @param funcionario
+     * @return id
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
+    private int pegaIdFuncionario(Funcionario funcionario) {
+	try {
+	    sql = "SELECT id FROM funcionario WHERE cpf = ?";
+	    conectar(sql);
+	    comando.setString(1, funcionario.getCpf());
+	    ResultSet resultado = comando.executeQuery();
+	    if (resultado.next()) {
+		id = resultado.getInt("id");
+	    }
+	    fechar();
+	} catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	return id;
     }
 }

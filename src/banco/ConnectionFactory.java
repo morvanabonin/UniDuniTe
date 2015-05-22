@@ -17,6 +17,10 @@ public class ConnectionFactory {
     private static final String USER = "root";
     private static final String PASSWORD = "root";
     
+    /**
+     * Metodo de conexão com o Banco de Dados
+     * @return conexao
+     */
     public static Connection getConnection() {
         try {
             String url = "jdbc:mysql://"+HOSTNAME+":"+PORT+"/"+DATABASE;

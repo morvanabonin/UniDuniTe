@@ -1,7 +1,7 @@
 
 package controller;
 
-import dao.FuncionarioDao;
+import dao.IFuncionarioDao;
 import dao.FuncionarioDaoBd;
 import model.CPF;
 import model.Funcionario;
@@ -12,11 +12,12 @@ import model.Funcionario;
  */
 public class UniDuneTeController {
     
-    public void executar(){
-        
-        Funcionario funcionario = new Funcionario("Teste", "Meuteste2", new CPF("2487999999"));
-        FuncionarioDao dao = new FuncionarioDaoBd();
-        dao.inserir(funcionario);
+    public void executar(){       
+        Funcionario funcionario = new Funcionario("Teste", "Meu teste8", new CPF("2487999888"));
+        IFuncionarioDao dao = new FuncionarioDaoBd();
+        //dao.inserir(funcionario);
+	//dao.deletar(funcionario);
+	dao.atualizar(funcionario);
         
     }
        

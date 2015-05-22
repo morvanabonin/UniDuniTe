@@ -1,4 +1,3 @@
-
 package dao;
 
 import java.util.List;
@@ -9,7 +8,7 @@ import model.Funcionario;
  *
  * @author morvanabonin
  */
-public interface FuncionarioDao {
+public interface IFuncionarioDao {
     
     public void inserir(Funcionario funcionario);
     public void deletar(Funcionario funcionario);
