@@ -56,4 +56,8 @@ public class Funcionario {
     public void setId(int id) {
         this.id = id;
     }
+    
+    public String dadosFuncionario() {
+	return "Nome "+ this.nome + "\n"+ "Cargo: " + this.cargo + "\n" +"CPF: " + this.cpf;
+    }
 }

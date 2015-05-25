@@ -16,7 +16,7 @@ public class CPF {
     public CPF(String cpf) {
         this.cpf = cpf;
     }
-
+    
     public String getCpf() {
         return cpf;
     }
@@ -24,5 +24,4 @@ public class CPF {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
 }

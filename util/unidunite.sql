@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `unidunite`.`funcionario` (
   `cargo` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_funcionario_projeto1_idx` (`id_projeto` ASC),
+  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC),
   CONSTRAINT `fk_funcionario_projeto1`
     FOREIGN KEY (`id_projeto`)
     REFERENCES `unidunite`.`projeto` (`id`)
