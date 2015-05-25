@@ -26,6 +26,10 @@ public class FuncionarioController {
 	    System.out.println(f.getNome());
 	});
 	
+	dao.listar().stream().forEach((f) -> {
+	    System.out.println(f.getNome());
+	});
+	
 	
         
     }

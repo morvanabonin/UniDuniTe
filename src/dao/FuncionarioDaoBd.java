@@ -161,7 +161,26 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
      */
     @Override
     public List<Funcionario> listar() {
-        return null;
+        List<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
+
+        try {
+            sql = "SELECT * FROM funcionario";
+            conectar(sql);
+            ResultSet resultado = comando.executeQuery();
+            while (resultado.next()) {
+                Funcionario funcionario = new Funcionario(
+                        resultado.getString("nome"),
+                        resultado.getString("cargo"),
+			new CPF(resultado.getString("cpf"))
+		);
+                listaFuncionarios.add(funcionario);
+            }
+            fechar();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaFuncionarios;
     }
     
     private void conectar(String sql) throws ClassNotFoundException, SQLException {
