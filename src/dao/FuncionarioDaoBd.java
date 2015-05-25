@@ -114,7 +114,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
                 funcionario = new Funcionario(
 		    resultado.getString("nome"),
 		    resultado.getString("cargo"),
-		    (CPF) resultado.getObject("CPF")
+		    new CPF(resultado.getString("cpf"))
 		);
             }
             fechar();
@@ -143,7 +143,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
                 Funcionario funcionario = new Funcionario(
 			resultado.getString("nome"),
 			resultado.getString("cargo"),
-			(CPF) resultado.getObject("CPF")
+			new CPF(resultado.getString("cpf"))
 		);
 		listaFuncionarios.add(funcionario);
             }
