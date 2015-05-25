@@ -8,6 +8,9 @@ public class UniDuneTeController {
     
     public void executar() {
 	FuncionarioController funcionario = new FuncionarioController();
-	funcionario.FuncionarioAction();
+	//funcionario.funcionarioAction();
+	
+	CompetenciaController competencia = new CompetenciaController();
+	competencia.competenciaAction();
     }
 }

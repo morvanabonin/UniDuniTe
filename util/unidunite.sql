@@ -20,8 +20,10 @@ USE `unidunite` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `unidunite`.`competencia` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `codigo` CHAR(6) NOT NULL,
   `nome` VARCHAR(60) NOT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `codigo_UNIQUE` (`codigo` ASC))
 ENGINE = InnoDB;
 
 

@@ -35,8 +35,4 @@ public class Competencia {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-
-
-
 }

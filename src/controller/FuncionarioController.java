@@ -2,7 +2,6 @@ package controller;
 
 import dao.IFuncionarioDao;
 import dao.FuncionarioDaoBd;
-import java.util.List;
 import model.CPF;
 import model.Funcionario;
 
@@ -12,12 +11,13 @@ import model.Funcionario;
  */
 public class FuncionarioController {
     
-    public void FuncionarioAction(){       
+    public void funcionarioAction(){       
         Funcionario funcionario = new Funcionario("Daniela Gomes", "Administradora", new CPF("46774733743"));
         IFuncionarioDao dao = new FuncionarioDaoBd();
-        //dao.inserir(funcionario);
-	//dao.deletar(funcionario);
-	//dao.atualizar(funcionario);
+	
+        dao.inserir(funcionario);
+	dao.deletar(funcionario);
+	dao.atualizar(funcionario);
 	
 	Funcionario func = dao.buscaPorCpf("96358228048");
 	System.out.println(func.dadosFuncionario());
@@ -29,8 +29,5 @@ public class FuncionarioController {
 	dao.listar().stream().forEach((f) -> {
 	    System.out.println(f.getNome());
 	});
-	
-	
-        
     }
 }

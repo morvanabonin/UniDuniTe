@@ -217,6 +217,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
     
     /**
      * Validação se já existe CPF no banco de dados
+     * 
      * @param cpf
      * @return true se CPF já existe | false se não existe
      */
