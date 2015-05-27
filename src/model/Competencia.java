@@ -38,4 +38,8 @@ public class Competencia {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    public String dadosCompetencia() {
+	return "Codigo: " + this.codigo + "\n" + "Nome " + this.nome;
+    }
 }

@@ -14,7 +14,7 @@ public interface ICompetenciaDao {
     public void deletar(Competencia competencia);
     public void atualizar(Competencia competencia);
     public void atualizarPorId(int id, Competencia competencia);
-    public Competencia buscaPorId(int id);
+    public Competencia buscaPorCodigo(String codigo);
     public List<Competencia> buscarPorNome(String nome);
     public List<Competencia> listar();
 

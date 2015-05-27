@@ -110,8 +110,26 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
     }
 
     @Override
-    public Competencia buscaPorId(int id) {
-	return null;
+    public Competencia buscaPorCodigo(String codigo) {
+	Competencia competencia = null;
+
+        try {
+            sql = "SELECT * FROM competencia WHERE codigo=?";
+            conectar(sql);
+            comando.setString(1, codigo);
+            ResultSet resultado = comando.executeQuery();
+            if (resultado.next()) {
+                competencia = new Competencia(
+		    resultado.getString("nome"),
+		    resultado.getString("codigo")
+		);
+            }
+            fechar();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CompetenciaDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return competencia;
     }
 
     @Override

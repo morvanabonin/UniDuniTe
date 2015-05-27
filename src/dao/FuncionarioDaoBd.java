@@ -119,7 +119,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
     }
 
     /**
-     * Método de busca de um funcionário por id
+     * Método de busca de um funcionário por cpf
      * @param cpf
      * @return Funcionário funcionario;
      */
@@ -183,7 +183,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
      */
     @Override
     public List<Funcionario> listar() {
-        List<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
+        List<Funcionario> listaFuncionarios = new ArrayList<>();
 
         try {
             sql = "SELECT * FROM funcionario";

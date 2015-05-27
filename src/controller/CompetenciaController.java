@@ -18,6 +18,9 @@ public class CompetenciaController {
 	//dao.inserir(competencia);
 	//dao.deletar(competencia);
 	//dao.atualizar(competencia);
-	dao.atualizarPorId(1, competencia);
+	//dao.atualizarPorId(1, competencia);
+	
+	Competencia comp = dao.buscaPorCodigo("000AAD");
+	System.out.println(comp.dadosCompetencia());
     }
 }
