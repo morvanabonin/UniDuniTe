@@ -19,6 +19,9 @@ public class Competencia {
         this.codigo = codigo;
         this.nome = nome;
     }
+    
+    public Competencia() {
+    }
 
     public String getCodigo() {
         return codigo;

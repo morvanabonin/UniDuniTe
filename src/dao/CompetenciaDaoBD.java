@@ -3,6 +3,7 @@ package dao;
 import banco.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,26 +24,76 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
 
     @Override
     public void inserir(Competencia competencia) {
-	try {
-	    sql = "INSERT INTO competencia(codigo, nome) VALUES (?, ?)";
-	    conectar(sql);
-	    comando.setString(1, competencia.getCodigo());
-	    comando.setString(2, competencia.getNome());
-	    comando.executeUpdate();
-	    fechar();
-	} catch (ClassNotFoundException | SQLException ex) {
-	    Logger.getLogger(CompetenciaDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+	if (this._validaCodigo(competencia.getCodigo())) {
+	    try {
+		throw new Exception("Codigo já existe no Banco de Dados");
+	    } catch (Exception ex) {
+		Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+	    }
+	} else {
+	    try {
+		sql = "INSERT INTO competencia(codigo, nome) VALUES (?, ?)";
+		conectar(sql);
+		comando.setString(1, competencia.getCodigo());
+		comando.setString(2, competencia.getNome());
+		comando.executeUpdate();
+		fechar();
+	    } catch (ClassNotFoundException | SQLException ex) {
+		Logger.getLogger(CompetenciaDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+	    }
 	}
     }
 
     @Override
     public void deletar(Competencia competencia) {
+	id = _pegaIdCompetenciaPorCodigo(competencia);
+	try {
+            sql = "DELETE FROM competencia WHERE id=?";
+	    conectar(sql);
+	    comando.setInt(1, id);
+	    comando.executeUpdate();
+	    fechar(); 
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CompetenciaDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
 	
     }
 
     @Override
     public void atualizar(Competencia competencia) {
-	
+	id = this._pegaIdCompetenciaPorCodigo(competencia);
+        try {
+	    sql = "UPDATE competencia SET codigo=?, nome=? WHERE id=?";
+            conectar(sql);
+            comando.setString(1, competencia.getCodigo());
+            comando.setString(2, competencia.getNome());
+	    comando.setInt(3, id);
+            comando.executeUpdate();
+            fechar();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CompetenciaDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
+     *
+     * @param id
+     * @param competencia
+     */
+    @Override
+    public void atualizarPorId(int id, Competencia competencia) {
+        try {
+	    sql = "UPDATE competencia SET codigo=?, nome=? WHERE id=?";
+            conectar(sql);
+            comando.setString(1, competencia.getCodigo());
+            comando.setString(2, competencia.getNome());
+	    comando.setInt(3, id);
+            comando.executeUpdate();
+            fechar();
+	    
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CompetenciaDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -68,6 +119,50 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
     public void fechar() throws SQLException {
         comando.close();
         conexao.close();
+    }
+    
+    /**
+     * Método para pegar o id do funcionário por cpf
+     * 
+     * @param competencia
+     * @return id
+     */
+    private int _pegaIdCompetenciaPorCodigo(Competencia competencia) {
+	try {
+	    sql = "SELECT id FROM competencia WHERE codigo = ?";
+	    conectar(sql);
+	    comando.setString(1, competencia.getCodigo());
+	    ResultSet resultado = comando.executeQuery();
+	    if (resultado.next()) {
+		id = resultado.getInt("id");
+	    }
+	    fechar();
+	} catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CompetenciaDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	return id;
+    }
+    
+    /**
+     * Validação se já existe o código no banco de dados
+     * 
+     * @param codigo
+     * @return true se codigo já existe | false se não existe
+     */
+    private boolean _validaCodigo(String codigo) {
+	try {
+	    sql = "SELECT codigo FROM competencia WHERE codigo = ?";
+	    conectar(sql);
+	    comando.setString(1, codigo);
+	    ResultSet resultado = comando.executeQuery();
+	    if (resultado.next()) {
+		return true;
+	    }
+	    fechar();
+	} catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CompetenciaDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	return false;
     }
 
 }

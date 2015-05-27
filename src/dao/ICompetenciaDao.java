@@ -13,6 +13,7 @@ public interface ICompetenciaDao {
     public void inserir(Competencia competencia);
     public void deletar(Competencia competencia);
     public void atualizar(Competencia competencia);
+    public void atualizarPorId(int id, Competencia competencia);
     public Competencia buscaPorId(int id);
     public List<Competencia> buscarPorNome(String nome);
     public List<Competencia> listar();

@@ -12,9 +12,12 @@ import model.Competencia;
 public class CompetenciaController {
     
     public void competenciaAction() {
-	Competencia competencia = new Competencia("IX45", "Criatividade");
+	Competencia competencia = new Competencia("000AAD", "Criatividade");
         ICompetenciaDao dao = new CompetenciaDaoBD();
 	
-	dao.inserir(competencia);
+	//dao.inserir(competencia);
+	//dao.deletar(competencia);
+	//dao.atualizar(competencia);
+	dao.atualizarPorId(1, competencia);
     }
 }
