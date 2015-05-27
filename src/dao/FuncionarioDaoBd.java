@@ -95,6 +95,28 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
             Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /**
+     * Método de atualização por id de um funcionário no bd
+     * @param id
+     * @param funcionario 
+     */
+    @Override
+    public void atualizarPorId(int id, Funcionario funcionario) {
+        try {
+	    sql = "UPDATE funcionario SET nome=?, cargo=?, cpf=? WHERE id=?";
+            conectar(sql);
+            comando.setString(1, funcionario.getNome());
+            comando.setString(2, funcionario.getCargo());
+	    comando.setString(3, funcionario.getCpf());
+	    comando.setInt(4, id);
+            comando.executeUpdate();
+            fechar();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Método de busca de um funcionário por id

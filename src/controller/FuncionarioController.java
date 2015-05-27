@@ -12,14 +12,15 @@ import model.Funcionario;
 public class FuncionarioController {
     
     public void funcionarioAction(){       
-        Funcionario funcionario = new Funcionario("Daniela Gomes", "Administradora", new CPF("46774733743"));
+        Funcionario funcionario = new Funcionario("Daniela Gomes", "Gerente da Administração", new CPF("46774733743"));
         IFuncionarioDao dao = new FuncionarioDaoBd();
 	
         dao.inserir(funcionario);
 	dao.deletar(funcionario);
 	dao.atualizar(funcionario);
+	dao.atualizarPorId(1, funcionario);
 	
-	Funcionario func = dao.buscaPorCpf("96358228048");
+	Funcionario func = dao.buscaPorCpf("46774733743");
 	System.out.println(func.dadosFuncionario());
 	
 	dao.buscarPorNome("Daniela").stream().forEach((f) -> {

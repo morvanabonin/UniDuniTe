@@ -21,7 +21,11 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
     private PreparedStatement comando;
     private String sql;  
     private int id;
-
+    
+    /**
+    * Método de inserção de uma competencia no bd
+    * @param competencia 
+    */
     @Override
     public void inserir(Competencia competencia) {
 	if (this._validaCodigo(competencia.getCodigo())) {
@@ -43,7 +47,11 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
 	    }
 	}
     }
-
+    
+    /**
+    * Método de deleção de uma competencia no bd
+    * @param competencia 
+    */
     @Override
     public void deletar(Competencia competencia) {
 	id = _pegaIdCompetenciaPorCodigo(competencia);
@@ -58,7 +66,11 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
         }
 	
     }
-
+    
+    /**
+    * Método de atualização de uma competencia no bd
+    * @param competencia 
+    */
     @Override
     public void atualizar(Competencia competencia) {
 	id = this._pegaIdCompetenciaPorCodigo(competencia);
@@ -76,7 +88,8 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
     }
     
     /**
-     *
+     * Método de atualização por id de uma competencia no bd
+     * 
      * @param id
      * @param competencia
      */
