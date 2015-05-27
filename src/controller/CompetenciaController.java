@@ -22,5 +22,9 @@ public class CompetenciaController {
 	
 	Competencia comp = dao.buscaPorCodigo("000AAD");
 	System.out.println(comp.dadosCompetencia());
+	
+	dao.buscarPorNome("Criatividade").stream().forEach((c) -> {
+	    System.out.println(c.getNome());
+	});
     }
 }

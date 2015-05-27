@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -134,7 +135,26 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
 
     @Override
     public List<Competencia> buscarPorNome(String nome) {
-	return null;
+        List<Competencia> listaCompetencias = new ArrayList<>();
+
+        try {
+            sql = "SELECT * FROM competencia WHERE nome LIKE ?";
+            conectar(sql);
+            comando.setString(1, "%" + nome + "%");
+            ResultSet resultado = comando.executeQuery();
+            while (resultado.next()) {
+                Competencia competencia = new Competencia(
+			resultado.getString("nome"),
+			resultado.getString("codigo")
+		);
+		listaCompetencias.add(competencia);
+            }
+            fechar();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CompetenciaDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (listaCompetencias);
     }
 
     @Override

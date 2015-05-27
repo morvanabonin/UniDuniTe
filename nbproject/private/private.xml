@@ -6,9 +6,11 @@
             <file>file:/home/morvanabonin/Área%20de%20Trabalho/Projects/UniDuniTe/src/dao/FuncionarioDaoBd.java</file>
             <file>file:/home/morvanabonin/Área%20de%20Trabalho/Projects/UniDuniTe/src/dao/ICompetenciaDao.java</file>
             <file>file:/home/morvanabonin/Área%20de%20Trabalho/Projects/UniDuniTe/src/dao/CompetenciaDaoBD.java</file>
-            <file>file:/home/morvanabonin/Área%20de%20Trabalho/Projects/UniDuniTe/src/controller/UniDuneTeController.java</file>
+            <file>file:/home/morvanabonin/Área%20de%20Trabalho/Projects/UniDuniTe/src/model/Funcionario.java</file>
             <file>file:/home/morvanabonin/Área%20de%20Trabalho/Projects/UniDuniTe/src/controller/CompetenciaController.java</file>
+            <file>file:/home/morvanabonin/Área%20de%20Trabalho/Projects/UniDuniTe/src/controller/UniDuneTeController.java</file>
             <file>file:/home/morvanabonin/Área%20de%20Trabalho/Projects/UniDuniTe/src/model/Competencia.java</file>
+            <file>file:/home/morvanabonin/Área%20de%20Trabalho/Projects/UniDuniTe/src/dao/IFuncionarioDao.java</file>
             <file>file:/home/morvanabonin/Área%20de%20Trabalho/Projects/UniDuniTe/src/controller/FuncionarioController.java</file>
         </group>
     </open-files>
