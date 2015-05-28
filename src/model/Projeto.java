@@ -16,12 +16,13 @@ public class Projeto {
     private boolean aberto;
     private String descricao;
 
-    public Projeto(int codigo, String nome, Date dt_inicio, Date dt_fim, boolean aberto) {
+    public Projeto(int codigo, String nome, Date dt_inicio, Date dt_fim, boolean aberto, String descricao) {
 	this.codigo = codigo;
 	this.nome = nome;
 	this.dt_inicio = dt_inicio;
 	this.dt_fim = dt_fim;
 	this.aberto = aberto;
+	this.descricao = descricao;
     }
     
     public int getCodigo() {
@@ -70,6 +71,15 @@ public class Projeto {
 
     public void setDescricao(String descricao) {
 	this.descricao = descricao;
+    }
+    
+    public String dadosProjeto() {
+	return "Código: " + this.codigo +
+		"\n Nome: " + this.nome +
+		"\n Data inicio: " + this.dt_inicio +
+		"\n Data fim: " + this.dt_fim +
+		"\n Status: " + this.aberto +
+		"\n Descrição: " + this.descricao;
     }
 
 }

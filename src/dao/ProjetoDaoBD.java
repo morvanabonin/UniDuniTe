@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -94,7 +95,29 @@ public class ProjetoDaoBD implements IProjetoDao {
 
     @Override
     public List<Projeto> listar() {
-	return null;
+	List<Projeto> listaProjetos = new ArrayList<>();
+
+        try {
+            sql = "SELECT * FROM projeto";
+            conectar(sql);
+            ResultSet resultado = comando.executeQuery();
+            while (resultado.next()) {
+                Projeto projeto = new Projeto(
+		    resultado.getInt("codigo"),
+		    resultado.getString("nome"),
+		    resultado.getDate("dt_inicio"),
+		    resultado.getDate("dt_fim"),
+		    resultado.getBoolean("aberto"),
+		    resultado.getString("descricao")
+		);
+                listaProjetos.add(projeto);
+            }
+            fechar();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ProjetoDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaProjetos;
     }
     
     /**
