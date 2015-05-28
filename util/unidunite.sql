@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `unidunite`.`projeto` (
   `dt_inicio` DATETIME NOT NULL,
   `dt_fim` DATETIME NOT NULL,
   `aberto` TINYINT(1) NOT NULL,
-  `descricao` BLOB NULL,
+  `descricao` TEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `codigo_UNIQUE` (`codigo` ASC))
 ENGINE = InnoDB;

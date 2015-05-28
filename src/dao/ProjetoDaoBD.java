@@ -53,20 +53,43 @@ public class ProjetoDaoBD implements IProjetoDao {
 
     /**
     * Método de deleção de um projeto no bd
-    * @param projeto 
+    * @param codigo 
     */
     @Override
-    public void deletar(Projeto projeto) {
-	
+    public void deletar(int codigo) {
+	try {
+            sql = "DELETE FROM projeto WHERE codigo=?";
+	    conectar(sql);
+	    comando.setInt(1, codigo);
+	    comando.executeUpdate();
+	    fechar(); 
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ProjetoDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
     * Método de atualização de um projeto no bd
+    * @param codigo
     * @param projeto 
     */
     @Override
-    public void atualizar(Projeto projeto) {
-	
+    public void atualizar(int codigo, Projeto projeto) {
+	try {
+	    sql = "UPDATE projeto SET codigo=?, nome=?, dt_inicio=?, dt_fim=?, aberto=?, descricao=? WHERE codigo=?";
+            conectar(sql);
+            comando.setInt(1, projeto.getCodigo());
+            comando.setString(2, projeto.getNome());
+	    comando.setDate(3, projeto.getDt_inicio());
+	    comando.setDate(4, projeto.getDt_fim());
+	    comando.setBoolean(5, projeto.isAberto());
+	    comando.setString(6, projeto.getDescricao());
+	    comando.setInt(7, codigo);
+            comando.executeUpdate();
+            fechar();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ProjetoDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

@@ -15,12 +15,15 @@ public class ProjetoController {
     public void projetoAction(){
 	
 	Projeto projeto = new Projeto(1234, "Projeto Armagedon", new Date(2015-05-15), new Date(15-05-29), true);
+	projeto.setDescricao("Eis a descrição");
 	IProjetoDao dao = new ProjetoDaoBD();
 	
 	try {
-	    dao.inserir(projeto);
+	    //dao.inserir(projeto);
 	} catch (Exception ex) {
 	    System.out.println(ex.getMessage());
 	} 
+	//dao.deletar(1234);
+	dao.atualizar(1234, projeto);
     }
 }
