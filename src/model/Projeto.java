@@ -73,13 +73,19 @@ public class Projeto {
 	this.descricao = descricao;
     }
     
+    public String estadoProjeto() {
+	String estado = this.isAberto() ? "aberto" : "fechado";
+	return estado;
+    }
+    
     public String dadosProjeto() {
-	return "Código: " + this.codigo +
-		"\n Nome: " + this.nome +
-		"\n Data inicio: " + this.dt_inicio +
-		"\n Data fim: " + this.dt_fim +
-		"\n Status: " + this.aberto +
-		"\n Descrição: " + this.descricao;
+	
+	return "Código: " + this.codigo 
+		+ "\n Nome: " + this.nome
+		+ "\n Data inicio: " + this.dt_inicio 
+		+ "\n Data fim: " + this.dt_fim 
+		+ "\n Estado do projeto : " + this.estadoProjeto()
+		+ "\n Descrição: " + this.descricao;
     }
 
 }

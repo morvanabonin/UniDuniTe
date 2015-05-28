@@ -77,15 +77,14 @@ public class ProjetoDaoBD implements IProjetoDao {
     @Override
     public void atualizar(int codigo, Projeto projeto) {
 	try {
-	    sql = "UPDATE projeto SET codigo=?, nome=?, dt_inicio=?, dt_fim=?, aberto=?, descricao=? WHERE codigo=?";
+	    sql = "UPDATE projeto SET nome=?, dt_inicio=?, dt_fim=?, aberto=?, descricao=? WHERE codigo=?";
             conectar(sql);
-            comando.setInt(1, projeto.getCodigo());
-            comando.setString(2, projeto.getNome());
-	    comando.setDate(3, projeto.getDt_inicio());
-	    comando.setDate(4, projeto.getDt_fim());
-	    comando.setBoolean(5, projeto.isAberto());
-	    comando.setString(6, projeto.getDescricao());
-	    comando.setInt(7, codigo);
+            comando.setString(1, projeto.getNome());
+	    comando.setDate(2, projeto.getDt_inicio());
+	    comando.setDate(3, projeto.getDt_fim());
+	    comando.setBoolean(4, projeto.isAberto());
+	    comando.setString(5, projeto.getDescricao());
+	    comando.setInt(6, codigo);
             comando.executeUpdate();
             fechar();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -118,6 +117,59 @@ public class ProjetoDaoBD implements IProjetoDao {
             Logger.getLogger(ProjetoDaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listaProjetos;
+    }
+    
+    @Override
+    public List<Projeto> listarProjetosAbertos() {
+	List<Projeto> listarProjetosAbertos = new ArrayList<>();
+
+        try {
+            sql = "SELECT * FROM projeto WHERE aberto = true";
+            conectar(sql);
+            ResultSet resultado = comando.executeQuery();
+            while (resultado.next()) {
+                Projeto projeto = new Projeto(
+		    resultado.getInt("codigo"),
+		    resultado.getString("nome"),
+		    resultado.getDate("dt_inicio"),
+		    resultado.getDate("dt_fim"),
+		    resultado.getBoolean("aberto"),
+		    resultado.getString("descricao")
+		);
+                listarProjetosAbertos.add(projeto);
+            }
+            fechar();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ProjetoDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listarProjetosAbertos;
+    }
+    
+    public List<Projeto> listarProjetosFechados() {
+	List<Projeto> listarProjetosFechados = new ArrayList<>();
+
+        try {
+            sql = "SELECT * FROM projeto WHERE aberto = false";
+            conectar(sql);
+            ResultSet resultado = comando.executeQuery();
+            while (resultado.next()) {
+                Projeto projeto = new Projeto(
+		    resultado.getInt("codigo"),
+		    resultado.getString("nome"),
+		    resultado.getDate("dt_inicio"),
+		    resultado.getDate("dt_fim"),
+		    resultado.getBoolean("aberto"),
+		    resultado.getString("descricao")
+		);
+                listarProjetosFechados.add(projeto);
+            }
+            fechar();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ProjetoDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listarProjetosFechados;
     }
     
     /**

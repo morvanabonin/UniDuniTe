@@ -24,18 +24,18 @@ public class FuncionarioController {
 	} 
 	
 	dao.deletar(funcionario);
-//	dao.atualizar(funcionario);
-//	dao.atualizarPorId(1, funcionario);
-//	
-//	Funcionario func = dao.buscaPorCpf("46774733743");
-//	System.out.println(func.dadosFuncionario());
-//	
-//	dao.buscarPorNome("Daniela").stream().forEach((f) -> {
-//	    System.out.println(f.getNome());
-//	});
-//	
-//	dao.listar().stream().forEach((f) -> {
-//	    System.out.println(f.getNome());
-//	});
+	dao.atualizar(funcionario);
+	dao.atualizarPorId(1, funcionario);
+	
+	Funcionario func = dao.buscaPorCpf("46774733743");
+	System.out.println(func.dadosFuncionario());
+	
+	dao.buscarPorNome("Daniela").stream().forEach((f) -> {
+	    System.out.println(f.getNome());
+	});
+	
+	dao.listar().stream().forEach((f) -> {
+	    System.out.println(f.getNome());
+	});
     }
 }

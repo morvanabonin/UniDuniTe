@@ -14,10 +14,10 @@ public class UniDuniTe {
      * @param args the command line arguments
      * @throws java.sql.SQLException
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, Exception {
         
-        UniDuneTeController teste = new UniDuneTeController();
-        teste.executar();
+        UniDuneTeController unidunite = new UniDuneTeController();
+        unidunite.executarAction();
 
     }
 }

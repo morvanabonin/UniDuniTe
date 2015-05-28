@@ -14,5 +14,7 @@ public interface IProjetoDao {
     public void deletar(int codigo);
     public void atualizar(int codigo, Projeto projeto);
     public List<Projeto> listar();
+    public List<Projeto> listarProjetosAbertos();
+    public List<Projeto> listarProjetosFechados();
     
 }
