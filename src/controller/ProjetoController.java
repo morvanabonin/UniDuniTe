@@ -2,7 +2,6 @@ package controller;
 
 import dao.IProjetoDao;
 import dao.ProjetoDaoBD;
-import java.sql.Date;
 import model.Projeto;
 import util.Console;
 
@@ -20,11 +19,10 @@ public class ProjetoController {
     public static final int LISTARFECHADOS = 5;
     public static final int DELETAR = 6;
     
-    public ProjetoController() {
-	IProjetoDao dao = new ProjetoDaoBD();
-    }
-    
     public void projetoAction(){
+	
+	Projeto projeto = new Projeto(1245, "Projeto Órion", new java.sql.Date(2015-05-15), new java.sql.Date(15-05-29), false, "Projeto Galáxia");
+	IProjetoDao dao = new ProjetoDaoBD();
 	
 	int opcao = 0;
 	
@@ -36,48 +34,35 @@ public class ProjetoController {
 
             switch (opcao) {
 		case INSERIR:
-		    
+		    try {
+			dao.inserir(projeto);
+		    } catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		    } 
 		break;
 		case LISTAR:
-		    
+		    dao.listar().stream().forEach((p) -> {
+			System.out.println(p.dadosProjeto());
+		    });
 		break;
 		case ATUALIZAR:
-		    
+		    dao.atualizar(1235, projeto);
 		break;
 		case LISTARABERTOS:
-		    
+		    dao.listarProjetosAbertos().stream().forEach((pAbertos) -> {
+			System.out.println(pAbertos.dadosProjeto());
+		    });
 		break;
 		case LISTARFECHADOS:
-		    
+		    dao.listarProjetosFechados().stream().forEach((pFechados) -> {
+			System.out.println(pFechados.dadosProjeto());
+		    });
 		break;
 		case DELETAR:
-		    
+		    dao.deletar(1234);
 		break;
             }
         } while (opcao != 0);
-	
-//	Projeto projeto = new Projeto(1234, "Projeto Andromeda", new Date(2015-05-15), new Date(15-05-29), false, "Projeto da Constelação");
-//	IProjetoDao dao = new ProjetoDaoBD();
-//	
-//	try {
-//	    dao.inserir(projeto);
-//	} catch (Exception ex) {
-//	    System.out.println(ex.getMessage());
-//	} 
-//	dao.deletar(1234);
-//	dao.atualizar(1235, projeto);
-//	
-//	dao.listar().stream().forEach((p) -> {
-//	    System.out.println(p.dadosProjeto());
-//	});
-//	
-//	dao.listarProjetosAbertos().stream().forEach((pAbertos) -> {
-//	    System.out.println(pAbertos.dadosProjeto());
-//	});
-//	
-//	dao.listarProjetosFechados().stream().forEach((pFechados) -> {
-//	    System.out.println(pFechados.dadosProjeto());
-//	});
     }
     
     public static String getOpcoes() {
@@ -93,7 +78,9 @@ public class ProjetoController {
     }  
     
     public void insereNovoProjeto(){
-
+	System.out.println("Novo projeto: ");
+	int codigo = Console.scanInt("Digite um código: ");
+	String nome = Console.scanString("Digite um nome: ");
+	
     }
-    
 }
