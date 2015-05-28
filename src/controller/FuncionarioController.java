@@ -78,7 +78,7 @@ public class FuncionarioController {
                 + "3- Atualizar Funcionario \n"
                 + "4- Atualizar Funcionario por id \n"
 		+ "5- Buscar Funcionario por cpf \n"
-		+ "6- Buscar Funcionario por cpf \n"
+		+ "6- Buscar Funcionario por nome \n"
 		+ "7- Deletar Funcionario \n"
                 + "0- Voltar"
                 + "\n--------------------------------------");
