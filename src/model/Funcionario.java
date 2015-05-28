@@ -1,17 +1,19 @@
 
 package model;
 
+import java.util.ArrayList;
+
 /**
- * Classe de Funcionário
+ * Entidade Funcionário
+ * 
  * @author morvanabonin
  */
 public class Funcionario {
     
-    private int id;
     private String nome;
     private String cargo;
-    private final CPF cpf; 
-    
+    private final CPF cpf;
+    private ArrayList<Competencia> competencias;
     /**
      * Construtor Funcionário
      * @param nome
@@ -22,6 +24,7 @@ public class Funcionario {
         this.nome = nome;
         this.cargo = cargo;
         this.cpf = cpf;
+	this.competencias = competencias;
     }
     
     public String getNome() {
@@ -49,15 +52,16 @@ public class Funcionario {
         this.cpf.setCpf(cpf);
     }
 
-    public int getId() {
-        return id;  
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
     public String dadosFuncionario() {
 	return "Nome "+ this.nome + "\n"+ "Cargo: " + this.cargo + "\n" +"CPF: " + this.cpf;
     }
+    
+    public void setCompetencias(ArrayList<Competencia> competencias) {
+	//competencias.add(Competencia competencia);
+    }
+
+    public ArrayList<Competencia> getCompetencias() {
+	return competencias;
+    }
+    
 }

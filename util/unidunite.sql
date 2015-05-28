@@ -32,11 +32,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `unidunite`.`projeto` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `codigo` INT NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   `dt_inicio` DATETIME NOT NULL,
   `dt_fim` DATETIME NOT NULL,
   `aberto` TINYINT(1) NOT NULL,
-  PRIMARY KEY (`id`))
+  `descricao` BLOB NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `codigo_UNIQUE` (`codigo` ASC))
 ENGINE = InnoDB;
 
 

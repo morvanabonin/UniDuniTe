@@ -12,7 +12,8 @@ import java.util.logging.Logger;
 import model.Competencia;
 
 /**
- * Class Dao BD de Competência
+ * Classe de Crud de Competencia 
+ * implements da interface ICompetenciaDao
  *
  * @author morvanabonin
  */
@@ -26,15 +27,14 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
     /**
     * Método de inserção de uma competencia no bd
     * @param competencia 
+     * @throws java.lang.Exception 
     */
     @Override
-    public void inserir(Competencia competencia) {
+    public void inserir(Competencia competencia) throws Exception {
+	
 	if (this._validaCodigo(competencia.getCodigo())) {
-	    try {
-		throw new Exception("Codigo já existe no Banco de Dados");
-	    } catch (Exception ex) {
-		Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	    }
+	    throw new Exception("Codigo já existe no Banco de Dados");
+	    
 	} else {
 	    try {
 		sql = "INSERT INTO competencia(codigo, nome) VALUES (?, ?)";
@@ -144,8 +144,8 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
             ResultSet resultado = comando.executeQuery();
             while (resultado.next()) {
                 Competencia competencia = new Competencia(
-			resultado.getString("nome"),
-			resultado.getString("codigo")
+		    resultado.getString("codigo"),
+		    resultado.getString("nome")
 		);
 		listaCompetencias.add(competencia);
             }
@@ -159,7 +159,25 @@ public class CompetenciaDaoBD implements ICompetenciaDao {
 
     @Override
     public List<Competencia> listar() {
-	return null;
+	List<Competencia> listaCompetencias = new ArrayList<>();
+
+        try {
+            sql = "SELECT * FROM competencia";
+            conectar(sql);
+            ResultSet resultado = comando.executeQuery();
+            while (resultado.next()) {
+                Competencia competencia = new Competencia(
+		    resultado.getString("codigo"),
+		    resultado.getString("nome")
+		);
+                listaCompetencias.add(competencia);
+            }
+            fechar();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CompetenciaDaoBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaCompetencias;
     }
     
     private void conectar(String sql) throws ClassNotFoundException, SQLException {

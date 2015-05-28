@@ -1,7 +1,7 @@
 package controller;
 
 import dao.IFuncionarioDao;
-import dao.FuncionarioDaoBd;
+import dao.FuncionarioDaoBD;
 import model.CPF;
 import model.Funcionario;
 
@@ -12,23 +12,30 @@ import model.Funcionario;
 public class FuncionarioController {
     
     public void funcionarioAction(){       
-        Funcionario funcionario = new Funcionario("Daniela Gomes", "Gerente da Administração", new CPF("46774733743"));
-        IFuncionarioDao dao = new FuncionarioDaoBd();
+        Funcionario funcionario = new Funcionario("Daniela Gomes", "Gerente da Administração", new CPF("46774733749"));
+	//TO DO, fazer um método que set as competencias
+	//funcionario.setCompetencias();
+        IFuncionarioDao dao = new FuncionarioDaoBD();
 	
-        dao.inserir(funcionario);
+	try {
+	    dao.inserir(funcionario);
+	} catch (Exception ex) {
+	    System.out.println(ex.getMessage());
+	} 
+	
 	dao.deletar(funcionario);
-	dao.atualizar(funcionario);
-	dao.atualizarPorId(1, funcionario);
-	
-	Funcionario func = dao.buscaPorCpf("46774733743");
-	System.out.println(func.dadosFuncionario());
-	
-	dao.buscarPorNome("Daniela").stream().forEach((f) -> {
-	    System.out.println(f.getNome());
-	});
-	
-	dao.listar().stream().forEach((f) -> {
-	    System.out.println(f.getNome());
-	});
+//	dao.atualizar(funcionario);
+//	dao.atualizarPorId(1, funcionario);
+//	
+//	Funcionario func = dao.buscaPorCpf("46774733743");
+//	System.out.println(func.dadosFuncionario());
+//	
+//	dao.buscarPorNome("Daniela").stream().forEach((f) -> {
+//	    System.out.println(f.getNome());
+//	});
+//	
+//	dao.listar().stream().forEach((f) -> {
+//	    System.out.println(f.getNome());
+//	});
     }
 }

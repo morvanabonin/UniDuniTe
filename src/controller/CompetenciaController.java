@@ -11,20 +11,29 @@ import model.Competencia;
  */
 public class CompetenciaController {
     
-    public void competenciaAction() {
+    public void competenciaAction() throws Exception {
 	Competencia competencia = new Competencia("000AAD", "Criatividade");
         ICompetenciaDao dao = new CompetenciaDaoBD();
 	
-	//dao.inserir(competencia);
-	//dao.deletar(competencia);
-	//dao.atualizar(competencia);
-	//dao.atualizarPorId(1, competencia);
+	try {
+	    dao.inserir(competencia);
+	} catch (Exception ex) {
+	    System.out.println(ex.getMessage());
+	} 
+	
+	dao.deletar(competencia);
+	dao.atualizar(competencia);
+	dao.atualizarPorId(1, competencia);
 	
 	Competencia comp = dao.buscaPorCodigo("000AAD");
 	System.out.println(comp.dadosCompetencia());
 	
-	dao.buscarPorNome("Criatividade").stream().forEach((c) -> {
+	dao.buscarPorNome("C").stream().forEach((c) -> {
 	    System.out.println(c.getNome());
+	});
+	
+	dao.listar().stream().forEach((c) -> {
+	    System.out.println(c.dadosCompetencia());
 	});
     }
 }

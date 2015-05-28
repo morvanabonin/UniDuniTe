@@ -11,6 +11,9 @@ public class UniDuneTeController {
 	//funcionario.funcionarioAction();
 	
 	CompetenciaController competencia = new CompetenciaController();
-	competencia.competenciaAction();
+	//competencia.competenciaAction();
+	
+	ProjetoController projeto = new ProjetoController();
+	projeto.projetoAction();
     }
 }

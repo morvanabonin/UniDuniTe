@@ -10,7 +10,7 @@ import model.Funcionario;
  */
 public interface IFuncionarioDao {
     
-    public void inserir(Funcionario funcionario);
+    public void inserir(Funcionario funcionario) throws Exception;
     public void deletar(Funcionario funcionario);
     public void atualizar(Funcionario funcionario);
     public void atualizarPorId(int id, Funcionario funcionario);

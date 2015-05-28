@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Entity Competência
+ * Entidade Competência
  *
  * @author morvanabonin
  */

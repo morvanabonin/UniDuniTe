@@ -10,7 +10,7 @@ import model.Competencia;
  */
 public interface ICompetenciaDao {
     
-    public void inserir(Competencia competencia);
+    public void inserir(Competencia competencia) throws Exception;
     public void deletar(Competencia competencia);
     public void atualizar(Competencia competencia);
     public void atualizarPorId(int id, Competencia competencia);

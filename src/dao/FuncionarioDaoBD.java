@@ -1,4 +1,3 @@
-
 package dao;
 
 import banco.ConnectionFactory;
@@ -14,12 +13,12 @@ import model.CPF;
 import model.Funcionario;
 
 /**
- * Classe de Crud de Funcionários 
- * implements da classe FuncionarioDao
+ * Classe de Crud de Funcionário
+ * implements da interface IFuncionarioDao
  * 
  * @author morvanabonin
  */
-public class FuncionarioDaoBd implements IFuncionarioDao {
+public class FuncionarioDaoBD implements IFuncionarioDao {
     
     private Connection conexao;
     private PreparedStatement comando;
@@ -29,16 +28,13 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
    /**
     * Método de inserção de um funcionário no bd
     * @param funcionario 
+    * @throws java.lang.Exception 
     */
     @Override
-    public void inserir(Funcionario funcionario) {
-
+    public void inserir(Funcionario funcionario) throws Exception {
+	
 	if (this._validaCpf(funcionario.getCpf())) {
-	    try {
-		throw new Exception("CPF já existe no Banco de Dados");
-	    } catch (Exception ex) {
-		Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
-	    }
+	   throw new Exception("CPF já existe no Banco de Dados"); 
 	} else {
 	    try {
 		sql = "INSERT INTO funcionario(nome, cargo, cpf) VALUES (?, ?, ?)";
@@ -49,8 +45,12 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
 		comando.executeUpdate();
 		fechar();
 
+		int id_func = this._pegaIdFuncionario(funcionario);
+		FuncionarioCompetenciaDaoBD funcionario_competencias = new FuncionarioCompetenciaDaoBD();
+		funcionario_competencias.inserirCompetencia(id_func, funcionario.getCompetencias());
+		
 	    } catch (ClassNotFoundException | SQLException ex) {
-		Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(FuncionarioDaoBD.class.getName()).log(Level.SEVERE, null, ex);
 	    }
 	}
     }
@@ -70,7 +70,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
 	    fechar();
 	    
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -92,7 +92,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
             fechar();
 
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -114,7 +114,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
             fechar();
 
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -142,7 +142,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
             fechar();
 
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return funcionario;
     }
@@ -172,7 +172,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
             fechar();
 
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return (listaFuncionarios);
     }
@@ -200,19 +200,9 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
             fechar();
 
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listaFuncionarios;
-    }
-    
-    private void conectar(String sql) throws ClassNotFoundException, SQLException {
-        conexao = ConnectionFactory.getConnection();
-        comando = conexao.prepareStatement(sql);
-    }
-    
-    public void fechar() throws SQLException {
-        comando.close();
-        conexao.close();
     }
     
     /**
@@ -232,7 +222,7 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
 	    }
 	    fechar();
 	} catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
 	return id;
     }
@@ -254,8 +244,19 @@ public class FuncionarioDaoBd implements IFuncionarioDao {
 	    }
 	    fechar();
 	} catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(FuncionarioDaoBd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDaoBD.class.getName()).log(Level.SEVERE, null, ex);
         }
 	return false;
     }
+    
+    private void conectar(String sql) throws ClassNotFoundException, SQLException {
+        conexao = ConnectionFactory.getConnection();
+        comando = conexao.prepareStatement(sql);
+    }
+    
+    public void fechar() throws SQLException {
+        comando.close();
+        conexao.close();
+    }
+
 }
