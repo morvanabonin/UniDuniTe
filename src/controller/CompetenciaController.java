@@ -23,7 +23,7 @@ public class CompetenciaController {
     
     public void competenciaAction() throws Exception {
 	
-	Competencia competencia = new Competencia("000AAA", "Criatividade");
+	Competencia competencia = new Competencia("000AAB", "Pontualidade");
         ICompetenciaDao dao = new CompetenciaDaoBD();
 	
 	int opcao = 0;

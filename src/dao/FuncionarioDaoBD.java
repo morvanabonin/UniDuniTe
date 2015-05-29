@@ -45,9 +45,9 @@ public class FuncionarioDaoBD implements IFuncionarioDao {
 		comando.executeUpdate();
 		fechar();
 
-		int id_func = this._pegaIdFuncionario(funcionario);
-		FuncionarioCompetenciaDaoBD funcionario_competencias = new FuncionarioCompetenciaDaoBD();
-		funcionario_competencias.inserirCompetencia(id_func, funcionario.getCompetencias());
+		//int id_func = this._pegaIdFuncionario(funcionario);
+		//FuncionarioCompetenciaDaoBD funcionario_competencias = new FuncionarioCompetenciaDaoBD();
+		//funcionario_competencias.inserirCompetencia(id_func, funcionario.getCompetencias());
 		
 	    } catch (ClassNotFoundException | SQLException ex) {
 		Logger.getLogger(FuncionarioDaoBD.class.getName()).log(Level.SEVERE, null, ex);

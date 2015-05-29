@@ -46,7 +46,7 @@ public class FuncionarioController {
 		break;
 		case LISTAR:
 		    dao.listar().stream().forEach((f) -> {
-			System.out.println(f.getNome());
+			System.out.println(f.dadosFuncionario());
 		    });
 		break;
 		case ATUALIZAR:
@@ -56,7 +56,7 @@ public class FuncionarioController {
 		    dao.atualizarPorId(1, funcionario);
 		break;
 		case BUSCARPORCPF:
-		    Funcionario func = dao.buscaPorCpf("46774733743");
+		    Funcionario func = dao.buscaPorCpf("46774733749");
 		    System.out.println(func.dadosFuncionario());
 		break;
 		case BUSCARPORNOME:

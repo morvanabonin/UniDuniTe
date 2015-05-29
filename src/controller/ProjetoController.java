@@ -68,8 +68,8 @@ public class ProjetoController {
     public static String getOpcoes() {
         return ("\n--------------------------------------\n"
                 + "1- Novo Projeto \n"
-                + "2- Atualizar Projeto \n"
-                + "3- Listar Projetos \n"
+		+ "2- Listar Projetos \n"
+                + "3- Atualizar Projeto \n"
 		+ "4- Listar Projetos Abertos \n"
 		+ "5- Listar Projetos Fechados \n"
 		+ "6- Deletar Projeto \n"
