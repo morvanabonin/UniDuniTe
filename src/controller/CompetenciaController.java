@@ -3,15 +3,16 @@ package controller;
 import dao.CompetenciaDaoBD;
 import dao.ICompetenciaDao;
 import model.Competencia;
-import model.Funcionario;
 import util.Console;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 
 /**
  * Classe Controller Competência
  * @author morvanabonin
  */
-public class CompetenciaController {
+public class CompetenciaController extends Application {
     
     public static final int INSERIR = 1;
     public static final int LISTAR = 2;
@@ -81,4 +82,12 @@ public class CompetenciaController {
                 + "0- Voltar"
                 + "\n--------------------------------------");
     } 
+    
+    @Override
+    public void start(Stage primaryStage) {
+	primaryStage.setTitle("JavaFX Welcome");
+        
+        primaryStage.show();
+    }
+
 }

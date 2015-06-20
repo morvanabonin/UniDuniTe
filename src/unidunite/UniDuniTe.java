@@ -1,6 +1,7 @@
 
 package unidunite;
 
+import app.MainApp;
 import controller.UniDuneTeController;
 import java.sql.SQLException;
 
@@ -17,7 +18,11 @@ public class UniDuniTe {
     public static void main(String[] args) throws SQLException, Exception {
         
         UniDuneTeController unidunite = new UniDuneTeController();
-        unidunite.executarAction();
+        //unidunite.executarAction();
+	
+	MainApp obj = new MainApp();
+	obj.myApp(args);
 
     }
+    
 }
